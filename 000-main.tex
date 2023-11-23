@@ -1,0 +1,70 @@
+\documentclass[a4paper, draft]{scrartcl}
+\KOMAoptions{%
+toc=bibliographynumbered,%
+parskip=half}
+\usepackage{subfiles}
+
+
+%% Page geometry
+\usepackage{geometry}
+\geometry{a4paper,%
+  inner=1.5cm,%
+  outer=1.5cm,%
+  top=2.7cm,%
+  bottom=2.5cm,%
+  heightrounded,%
+  marginparwidth=0cm,%
+  marginparsep=0cm,%
+}
+
+\usepackage{xr}
+\usepackage{zref}
+
+%% Bibliography setup
+\usepackage[%
+bibstyle=numeric,%
+citestyle=ieee,%
+sorting=nyt,%
+backref=true
+]{biblatex}
+\DefineBibliographyStrings{english}{%
+  backrefpage = {page},% originally "cited on page"
+  backrefpages = {pages},% originally "cited on pages"
+}
+\usepackage[UKenglish]{babel}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{aliascnt}
+%\bibliography{} TODO
+
+% Macro setup
+\usepackage{amsfonts}
+\usepackage{tensor}
+\usepackage{slashed}
+\usepackage{my-macros}
+\usepackage{my-envs}
+
+\author{
+  \href{https://gchaudhuri.dev/}{Gautam Chaudhuri},
+  Dylan Crook,
+  Linden Disney-Hogg
+}
+\date{\today}
+\title{Topics in Algebraic Geometry: Notes 2023--24}
+
+\hypersetup{
+ pdfauthor={Gautam Chaudhuri, Dylan Crook, Linden Disney-Hogg},
+ pdftitle={Topics in Algebraic Geometry: Notes 2023--24},
+ pdfkeywords={},
+ pdfsubject={},
+ pdflang={English}}
+
+\usepackage[notquote]{hanging}
+\begin{document}
+
+\maketitle
+
+\clearpage
+\printbibliography%
+
+\end{document}
