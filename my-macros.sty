@@ -1,0 +1,83 @@
+\RequirePackage{amssymb}
+\RequirePackage{amsmath}
+\RequirePackage{centernot}
+\RequirePackage{bbm}
+\RequirePackage{physics}
+
+
+% Logic and proof symbols
+\newcommand{\implied}{\>\Leftarrow\>}
+\newcommand{\nImplies}{\>\centernot\Rightarrow\>}
+\newcommand{\nImplied}{\>\centernot\Leftarrow\>}
+\newcommand{\nIff}{\>\centernot\Leftrightarrow\>}
+\newcommand\mapsfrom{\mathrel{\reflectbox{\ensuremath{\mapsto}}}}
+
+% Common sets and spaces
+% \Xnn := X non-negative
+% \Xpl := X positive
+% \xn  := X^n (\Rn is defined elsewhere, so this is done to avoid a collision)
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\Znn}{\mathbb{Z}_{\geq0}}
+\newcommand{\Znz}{\mathbb{Z}_{\neq0}}
+\newcommand{\Zpl}{\mathbb{Z}^+}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\rn}{\mathbb{R}^{n}}
+\newcommand{\Rnn}{\mathbb{R}_{\geq0}}
+\newcommand{\Rnz}{\mathbb{R}_{\neq0}}
+\newcommand{\Rpl}{\mathbb{R}^+}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\cn}{\mathbb{C}^{n}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\cpn}{\mathbb{CP}^{n}}
+
+% Common functional
+\DeclareMathOperator{\id}{Id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\vol}{Vol}
+
+\let\div\undefined%
+\DeclareMathOperator{\div}{div}
+
+% Things on manifolds
+\DeclareMathOperator{\volForm}{\dd{Vol}}
+\DeclareMathOperator{\vfield}{\mathfrak{X}}
+\DeclareMathOperator{\lder}{\mathcal{L}}
+\newcommand{\ddx}[1]{\dd{x^{#1}}}
+
+% Operators
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Ad}{Ad}
+
+% Groups
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\OO}{O}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\UU}{U}
+\DeclareMathOperator{\SU}{SU}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\stab}{Stab}
+\newcommand{\Zcyc}[1]{\mathbb{Z}/{{#1}\mathbb{Z}}} % Cyclic group
+\newcommand{\ctr}{\righthalfcup} % group action
+
+% Algebras
+\DeclareMathOperator{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\uu}{\mathfrak{u}}
+\DeclareMathOperator{\oo}{\mathfrak{o}}
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\newcommand{\lalg}[1]{\mathfrak{#1}}
+
+% Derivatives
+\newcommand{\psd}[1]{\partial_{#1}}
+\newcommand{\copsd}[1]{\partial^{#1}}
+
+% Operators on set functions
+\newcommand{\restr}[1]{{#1}{\big|}}
+\newcommand{\pfwd}[1]{{{#1}_{*}}}
+\newcommand{\pback}[1]{{{#1}^{*}}}

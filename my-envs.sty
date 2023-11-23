@@ -1,0 +1,25 @@
+\RequirePackage{amsthm}
+\RequirePackage{hyperref}
+
+% https://tex.stackexchange.com/a/113540
+\newcommand{\newsharedtheorem}[3]{%
+  \newaliascnt{#1}{#2}%
+  \newtheorem{#1}[#1]{#3}%
+  \aliascntresetthe{#1}%
+  \expandafter\newcommand\csname #1%
+autorefname\endcsname{#3}%
+}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\newtheorem{theorem}{Theorem}[section]
+\newsharedtheorem{proposition}{theorem}{Proposition}
+\newtheorem*{proposition*}{Proposition}
+\newsharedtheorem{lemma}{theorem}{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newsharedtheorem{corollary}{theorem}{Corollary}
+\newsharedtheorem{remark}{theorem}{Remark}
+
+\theoremstyle{definition}
+\newsharedtheorem{definition}{theorem}{Definition}
+\newsharedtheorem{propdef}{theorem}{Definition/Proposition}
