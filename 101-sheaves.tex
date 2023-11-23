@@ -1,0 +1,188 @@
+\documentclass[000-main.tex]{subfiles}
+
+\begin{document}
+\subsection{Sheaves}%
+\label{sec:sheaves}
+
+Presheaves are objects which assign data to a topological space in a manner that respects locality.
+\begin{definition}
+  Suppose $X$ is a topological space, its \emph{category of open sets} is the category $\mathcal{C}_X$ with objects $\Obj(\mathcal{C}_X) := \{U \subseteq X \text{ open}\}$ and morphisms,
+  \begin{displaymath}
+    \Hom_{\mathcal{C}_X}(U, V) :=
+    \begin{cases}
+      U \hookrightarrow V &: U \subseteq V\\
+      \varnothing &: \text{ else}
+    \end{cases}
+  \end{displaymath}
+  We typically call morphisms of $\mathcal{C}_X^{\opp}$ \emph{restriction maps} or \emph{restrictions} and write them as $\res_{UV}: V\to U$.
+
+  Given a category $\mathcal{D}$, a \emph{presheaf on $X$} with values in $\mathcal{D}$ is a functor,
+  \begin{displaymath}
+    \mathcal{F}: \mathcal{C}_X^{\opp} \to \mathcal{D}
+  \end{displaymath}
+  We call elements of $\mathcal{F}(U)$ \emph{sections}.
+
+  A \emph{morphism of presheaves} is a natural transformation of functors $\phi: \mathcal{F}\to \mathcal{G}$.
+  An \emph{isomorphism of presheaves} is a natural isomorphism of functors.
+\end{definition}
+
+Among presheaves, we are particularly interested in those which satisfy two properties,
+\begin{definition}
+  Let $\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ be a presheaf.
+  We say $\mathcal{F}$ is a \emph{sheaf} if it has the following two properties:
+  \begin{itemize}
+    \item \textbf{(injectivity)}: For every $U\subset X$ open, for every cover $\{U_i\subset U\open \mid i\in I\}$, and for every pair of sections $s, t\in \mathcal{F}(U)$,
+          \begin{displaymath}
+            \qty(\forall i\in I, \restr{s}_{U_i} = \restr{t}_{U_i}) \implies s = t
+          \end{displaymath}
+    \item \textbf{(gluing)}: For every $U\subset X$ open, for every cover $\{U_i\subset U\open\mid i\in I\}$, if we have sections $\{s_i\in \mathcal{F}(U_i)\}$,
+          \begin{displaymath}
+            \qty(\forall i, j \in I, \restr{s_i}_{U_{ij}} = \restr{s_j}_{U_{ij}}) \implies \exists s\in \mathcal{F}(U), \forall i\in I, \restr{s}_{U_i} = s_i
+          \end{displaymath}
+          where $U_{ij} := U_i\cap U_j$.
+  \end{itemize}
+
+  An (iso)morphism of sheaves is an (iso)morphism of the underlying presheaf.
+\end{definition}
+\begin{remark}
+  How far can we generalise this definition?
+  What restrictions do we need on a category $\mathcal{C}$ for there to be a good notion of a sheaf on $\mathcal{C}$?
+\end{remark}
+
+When $\mathcal{D} = \mathbf{AbGrp}$ (and many other categories), these two properties can be summarised in one exact sequence.
+\begin{proposition}
+  Let $\mathcal{F}: \mathcal{C}_X^{\opp} \to \mathbf{AbGrp}$ be a presheaf. TFAE:\@
+  \begin{itemize}
+    \item $\mathcal{F}$ is a sheaf.
+    \item For all $U\subset X$ open, for all covers $\{U_i\subset U\mid i\in I\}$, the sequence
+          \begin{displaymath}
+            0 \to \mathcal{F}(U) \xrightarrow{\alpha} \prod_{i\in I}\mathcal{F}(U_i) \xrightarrow{\beta} \prod_{i, j\in I}\mathcal{F}(U_{ij})
+          \end{displaymath}
+          where $\alpha: s\mapsto {\qty(\restr{s}_{U_i})}_{i\in I}$ and $\beta: {(s_i)}_{i\in I} \mapsto {\qty(\restr{s_i}_{U_{ij}} - \restr{s_j}_{U_{ij}})}_{i, j\in I}$, is exact.
+  \end{itemize}
+\end{proposition}
+
+\paragraph{Examples of Sheaves}
+
+A good first example is the \emph{sheaf of continuous functions}, $C^0(-, Y)$, where $Y$ is some topological space.
+It is a sheaf with values in $\mathbf{Set}$ with objects $C^0(U, Y)$ and with the obvious restriction maps.
+If $Y$ is some topological field, e.g.\ $\RR$, endowing $C^0(U, Y)$ with pointwise multiplication and addition gives $C^0(-, Y)$ the structure of a sheaf with values in $\mathbf{Ring}$.
+
+If we have a continuous map $\pi: E\to X$, there is a distinguished subsheaf of $C^0(-, E)$ called the \emph{sheaf of sections of $E$}.
+The restriction maps are the same as $C^0(-, E)$, but with objects,
+\begin{displaymath}
+  \Gamma(U, E) := \{f\in C^0(U, E)\mid \pi\circ f = \id_U\}
+\end{displaymath}
+
+If we fix an object $D\in \mathcal{D}$, the \emph{constant sheaf} with value $D$ is the sheaf,
+\begin{displaymath}
+  \begin{gathered}
+    \underline{D}(U) := D\\
+    \underline{D}\qty(\res_{UV}) := \id_D
+  \end{gathered}
+\end{displaymath}
+If we further assume that $0\in\mathcal{D}$ is a zero object and fix a point $x\in X$, the \emph{skyscraper sheaf} supported at $x$ with value $D$ is the sheaf,
+\begin{displaymath}
+  \begin{gathered}
+  \underline{D}_x(U) :=
+  \begin{cases}
+    D &: x\in U\\
+    0 &: \text{ else }
+  \end{cases}\\
+  \underline{D}_x(\res_{UV}) :=
+  \begin{cases}
+    \id_D &: x\in U\\
+    0 &: \text{ else }
+  \end{cases}
+\end{gathered}
+\end{displaymath}
+
+We can also construct sheaves from other sheaves.
+\begin{definition}
+  Suppose $f: X\to Y$ and $g: Y\to Z$ are continuous maps and let $\mathcal{F}: \mathcal{C}_Y^{\opp} \to \mathcal{D}$ be a presheaf on $Y$.
+
+  The \emph{direct image presheaf} of $\mathcal{F}$ by $g$ is the presheaf $\pfwd{g}\mathcal{F}: \mathcal{C}_Z^{\opp}\to \mathcal{D}$ defined by,
+  \begin{displaymath}
+    (\pfwd{g}\mathcal{F})(V) = \mathcal{F}(g^{-1}(V))
+  \end{displaymath}
+  The \emph{inverse image presheaf} of $\mathcal{F}$ by $f$ is the presheaf $f^{-1}\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ defined by,
+  \begin{displaymath}
+    (f^{-1}\mathcal{F})(U) = \lim_{V\supseteq f(U), V\subseteq Y\open}\mathcal{F}(V)
+  \end{displaymath}
+\end{definition}
+
+$f^{-1}\mathcal{F}$ is generally not a sheaf, even when $\mathcal{F}$ is a sheaf, but we do have the following.
+\begin{lemma}
+  If $\mathcal{F}$ is a sheaf, then $g_*\mathcal{F}$ is a sheaf.
+\end{lemma}
+There is also the following result which is rather cute.
+\begin{lemma}
+  Given $x\in X$, view $\{x\}$ as a subspace of $X$ with inclusion $\imath_x: \{x\}\to X$ and let $D\in \mathcal{D}$.
+  Then,
+  \begin{displaymath}
+    \underline{D}_x \cong \pfwd{\imath_x}\underline{D}
+  \end{displaymath}
+  where $\underline{D}_x$ is the skyscraper sheaf supported at $x$ with value $D$ on $X$, and $\underline{D}$ is the constant sheaf with value $D$ on $\{x\}$.
+\end{lemma}
+
+
+\paragraph{$B$-sheaves}
+
+Another useful characterisation of sheaves are in terms of $B$-sheaves (see Eisenbud and Harris for definition and proposition relating $B$ sheaves and sheaves).
+
+\paragraph{Stalks and Sheafification}
+
+\begin{definition}
+  Let $\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ be a sheaf.
+  For $x\in X$, the stalk
+\end{definition}
+
+\paragraph{Vector Bundles}%
+
+Another useful example is the sheaf of sections of a vector bundle.
+\begin{definition}
+  Let $X$ be a topological space, a \emph{topological $\RR$-vector bundle over $X$} is a topological space $E$ equipped with a continuous surjective \emph{projection map} $\pi: E \to X$ such that:
+  \begin{itemize}
+    \item $\forall p\in X$, $\pi^{-1}(\{p\}) \cong \RR^{n_p}$ for some $n_p\in\Znn$,
+    \item $\forall p\in X$, $\exists U\subseteq X\open$ such that $x\in U$ and,
+          \begin{displaymath}
+            \phi_U: \pi^{-1}(U) \xrightarrow{\sim} U\times \RR^{n_U}
+          \end{displaymath}
+          for some $n_U\in\Znn$.
+  \end{itemize}
+  Moreover, the $\phi_U$ should satisfy,
+  \begin{itemize}
+    \item \(\pi = \operatorname{proj}_1\circ \phi_U\) as maps $\pi^{-1}(U) \to U$, and
+    \item $\RR^{n_U}\to \pi^{-1}(\{p\}), v \mapsto \phi^{-1}_U(p, v)$ is a linear isomorphism.
+  \end{itemize}
+\end{definition}
+
+In this case, $\pi^{-1}: \mathcal{C}_X^{\opp}\to \mathcal{C}_E^{\opp}$ is clearly a presheaf (as would be the inverse image map for any continuous map), but much of the data it contains is redundant.
+Instead, we can consider the \emph{sheaf of sections},
+\begin{displaymath}
+  \Gamma(U, E) := \{\sigma: U\to \pi^{-1}(U) \mid \pi\circ\sigma = \id_U\}
+\end{displaymath}
+Given $\sigma, \tau\in\Gamma(U,E)$, we define their sum as,
+\begin{displaymath}
+  \begin{gathered}
+    \sigma + \tau: U\to \pi^{-1}(U)\\
+    x \mapsto \sigma(x) + \tau(x)
+  \end{gathered}
+\end{displaymath}
+using the vector space structure on $\pi^{-1}(\{x\})$.
+$\Gamma(U, E)$ is then clearly an $\RR$-vector space, and so it can be shown that $\Gamma(-, E)$ a sheaf $\mathcal{C}_X^{\opp}\to \mathbf{Vec}_{\RR}$.
+A powerful result about vector bundles is the Serre-Swan theorem,
+\begin{theorem}[Serre-Swan]
+  Suppose $X$ is compact Hausdorff.
+  There is a bijection between real vector bundles on $X$ and finitely generated projective $C^0(X, \RR)$-modules.
+  This extends to an equivalence of categories.
+\end{theorem}
+We'll revisit this result and variations on it later.
+
+
+\end{document}
+
+% Local Variables:
+% TeX-master: "000-main.tex"
+% TeX-engine: luatex
+% End:
