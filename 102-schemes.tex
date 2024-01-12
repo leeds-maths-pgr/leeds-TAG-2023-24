@@ -1,0 +1,72 @@
+\documentclass[000-main.tex]{subfiles}
+
+\begin{document}
+
+\subsection{Schemes}%
+\label{sec:schemes}
+
+Given a ring $A$ (which will always be commutative) we can define a set
+\[
+\Spec A = \lbrace\text{prime\footnote{Recall that prime ideals are those where, given $a,b \in A$ such that $ab$ is in the ideal, either $a$ is or $b$ is. By convention, we will not allow the whole ring to be a prime ideal.} ideals in }A\rbrace.
+\]
+We want to make $\Spec A$ into a topological space. For an ideal $\mathfrak{a}$ let 
+\[
+V(\mathfrak{a}) = \lbrace\mathfrak{b} \in \Spec A \, | \, \mathfrak{a} \subseteq \mathfrak{b} \rbrace, 
+\]
+we define the topology by letting the $V(\mathfrak{a})$ be the closed sets. This is analogous to the Zariski topology on a variety. 
+
+\begin{lemma}[\cite{Hartshorne1977}, Lemma II.2.1]
+	The topology defined really is a topology. 
+\end{lemma} 
+
+\begin{example}
+	Consider $A = k$ any field. The only prime ideal is $(0)$, so $\Spec k$ is a point. Note the Krull dimension of $k$ is 0.
+	Consider now $A = k[x]$. We then prime ideals $(f)$ where $f$ is an irreducible polynomial. When $k$ is algebraically closed the only such ideals are of the form $(x-a)$ where $a \in k$.  Clearly $(0)$ is never in the closure of any ideal (except itself), and $V((x-a)) = (x-a)$, so each $(x-a)$ is a closed point. We see that the closed points are in bijection with the underlying field.  
+\end{example}
+
+\begin{remark}
+	It can be useful for some proofs to work with an open basis of the topology. This is provided by the sets $D(f) := \text{open complement of }V((f))$ for any $f \in A$.  
+\end{remark}
+
+We now want to define a sheaf over $\Spec A$. Recall the definition of the \emph{localisation} of $A$ at $\mathfrak{p} \subset A$ a prime ideal:
+\[
+A_{\mathfrak{p}} := (A\setminus \mathfrak{p})^{-1} A = \lbrace \frac{a}{f} \, | \, a \in A, f \in A\setminus \mathfrak{p} \rbrace / \sim,
+\]
+where the equivalence relation $\sim$ is given by 
+\[
+\frac{a}{f} \sim \frac{a^\prime}{f^\prime} \Leftrightarrow \exists f^{\prime \prime} \in A\setminus \mathfrak{p} , \quad f^{\prime \prime}(a f^\prime - a^\prime f) = 0. 
+\]
+The localisation is an example of a \emph{local ring}, that is a ring with a unique maximal idea, which in the case of the localisation corresponds to $\mathfrak{p}$. Given any ring hom $\phi : A \to B$, we get a local ring hom $\phi_{\mathfrak{p}} : A_{\phi^{-1}(\mathfrak{p})} \to B_{\mathfrak{p}}$. 
+
+
+The sheaf $\mathcal{O}$ which we will define on $\Spec A$ will now be given by 
+\[
+\mathcal{O}(U) = \lbrace s : U \to \sqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}} \, | \, s(\mathfrak{p}) \in A_{\mathfrak{p}} \text{ and } \exists V \subseteq U, V \ni \mathfrak{p}, a, f \in A \text{ s.t. } \forall \mathfrak{q} \in V, \, f \notin \mathfrak{q} \text{ and } s(\mathfrak{q}) = \frac{a}{f} \rbrace.  
+\]
+The second part of the condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials). 
+
+\begin{lemma}
+	The stalk $\mathcal{O}_{\mathfrak{p}}$ is isomorphic to $A_{\mathfrak{p}}$ as a local ring. 
+\end{lemma}
+
+We shall call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$. 
+
+\hl{LDH to include some of the notes here}
+
+\begin{example}
+	Having considered some of the easy Spec examples, let's consider something a bit more exotic, namely $\Spec \mathbb{Z}$ and $\Spec \mathbb{Z}[x]$. 
+	
+	
+	Restrict to $\Spec \mathbb{Z}$. The first thing to ask ourselves is what the prime ideals are going to be? Well in this case history comes along and makes this very easy, they are just ideals $(p)$ where $p$ is a prime, and obviously $(0)$. We note for a second that this means we have the chain of prime ideals $(0) \subset (p)$, and these are the only such chains, so the Krull dimension of $\mathbb{Z}$ is 1. We will thus want to imagine in our mind that $\Spec \mathbb{Z}$ is ``1-dimensional". We imagine a line of points $(p)$, and a generic point $(0)$ spread out amongst them. 
+	
+	Now consider $\Spec \mathbb{Z}[x]$. We now also get prime ideals $(f)$ where $f$ is an irreducible polynomial, and ideals $(f, p)$ where $f$ is also irreducible mod $p$, i.e. irreducible in $\mathbb{Z}_p[x]$. We can now get chains $(0) \subset (p) \subset (f, p)$ so the Krull dimension is 2, so we want to imagine a plane. There will be a `$(p)$'-axis and an `$(f)$'-axis, with the closed points being of the form $(f, p)$. For example the $(x)$ line will intersect the lines $(2)$, $(3)$, $(5)$ just in one  point. The `line' $(x^2+1)$ will intersect $(2)$ at $(2, x+1)$ twice (as $(x+1)^2 = x^2 + 1$ mod 2) and the line $(5)$ at the two points $(5, x+2)$, $(5, x+3)$. $x^2+1$ remains irreducible over $\mathbb{Z}_3$, so the intersection $(3, x^3+1)$ is a `fat point' in some sense. 
+\end{example}
+
+
+
+\end{document}
+
+% Local Variables:
+% TeX-master: "000-main.tex"
+% TeX-engine: luatex
+% End:
