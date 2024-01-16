@@ -22,6 +22,16 @@ we define the topology by letting the $V(\mathfrak{a})$ be the closed sets. This
 \begin{example}
 	Consider $A = k$ any field. The only prime ideal is $(0)$, so $\Spec k$ is a point. Note the Krull dimension of $k$ is 0.
 	Consider now $A = k[x]$. We then prime ideals $(f)$ where $f$ is an irreducible polynomial. When $k$ is algebraically closed the only such ideals are of the form $(x-a)$ where $a \in k$.  Clearly $(0)$ is never in the closure of any ideal (except itself), and $V((x-a)) = (x-a)$, so each $(x-a)$ is a closed point. We see that the closed points are in bijection with the underlying field.  
+	For one more example in this vein, consider $\Spec k[x, y]$ where we will restrict $k$ to be algebraically closed. The points in $\Spec$ are given by $(0)$, $(f)$ for $f \in k[x, y]$ irreducible, and $(x-a, y-b)$ for $a,b \in k$. The closed points are the $(x-a, y-b)$, and given $f$ such that $f(a,b)=0$, $V((f)) \cap V((x-a, y-b)) = V((x-a, y-b))$, so now the Krull dimension is 2, and we have generic points distributed along the zero locus of any irreducible $f$.   
+\end{example}
+
+\begin{example}
+	Having considered some of the easy Spec examples, let's consider something a bit more exotic, namely $\Spec \mathbb{Z}$ and $\Spec \mathbb{Z}[x]$. 
+	
+	
+	Restrict to $\Spec \mathbb{Z}$. The first thing to ask ourselves is what the prime ideals are going to be? Well in this case history comes along and makes this very easy, they are just ideals $(p)$ where $p$ is a prime, and obviously $(0)$. We note for a second that this means we have the chain of prime ideals $(0) \subset (p)$, and these are the only such chains, so the Krull dimension of $\mathbb{Z}$ is 1. We will thus want to imagine in our mind that $\Spec \mathbb{Z}$ is ``1-dimensional". We imagine a line of points $(p)$, and a generic point $(0)$ spread out amongst them. 
+	
+	Now consider $\Spec \mathbb{Z}[x]$. We now also get prime ideals $(f)$ where $f$ is an irreducible polynomial, and ideals $(f, p)$ where $f$ is also irreducible mod $p$, i.e. irreducible in $\mathbb{Z}_p[x]$. We can now get chains $(0) \subset (p) \subset (f, p)$ so the Krull dimension is 2, so we want to imagine a plane. There will be a `$(p)$'-axis and an `$(f)$'-axis, with the closed points being of the form $(f, p)$. For example the $(x)$ line will intersect the lines $(2)$, $(3)$, $(5)$ just in one  point. The `line' $(x^2+1)$ will intersect $(2)$ at $(2, x+1)$ twice (as $(x+1)^2 = x^2 + 1$ mod 2) and the line $(5)$ at the two points $(5, x+2)$, $(5, x+3)$. $x^2+1$ remains irreducible over $\mathbb{Z}_3$, so the intersection $(3, x^3+1)$ is a `fat point' in some sense. 
 \end{example}
 
 \begin{remark}
@@ -46,23 +56,38 @@ The sheaf $\mathcal{O}$ which we will define on $\Spec A$ will now be given by
 The second part of the condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials). 
 
 \begin{lemma}
-	The stalk $\mathcal{O}_{\mathfrak{p}}$ is isomorphic to $A_{\mathfrak{p}}$ as a local ring. 
+	The stalk $\mathcal{O}_{\mathfrak{p}}$ is isomorphic to $A_{\mathfrak{p}}$, not just as a ring but as a local ring. 
 \end{lemma}
 
 We shall call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$. 
 
-\hl{LDH to include some of the notes here}
+\begin{definition}
+	We shall call a pair $(X, \mathcal{O}_X)$, where $X$ is a topological space and $\mathcal{O}_X$ is a sheaf of rings over it, a \emph{ringed space}. Define a morphism of ringed spaces to be a pair $(f : X \to Y, f^\sharp : \mathcal{O}_Y \to f_\ast \mathcal{O}_X)$, where $f, f^\sharp$ are morphisms in the corresponding categories. 
+	
+	We shall say that $(X, \mathcal{O}_X)$ is moreover a \emph{locally ringed space} if the stalk $\mathcal{O}_{X, P}$ at $P \in X$ is a local ring and $f^\sharp_P : \mathcal{O}_{Y, f(P)} \to \mathcal{O}_{X, P}$ is a local ring hom. 
+\end{definition}
 
 \begin{example}
-	Having considered some of the easy Spec examples, let's consider something a bit more exotic, namely $\Spec \mathbb{Z}$ and $\Spec \mathbb{Z}[x]$. 
-	
-	
-	Restrict to $\Spec \mathbb{Z}$. The first thing to ask ourselves is what the prime ideals are going to be? Well in this case history comes along and makes this very easy, they are just ideals $(p)$ where $p$ is a prime, and obviously $(0)$. We note for a second that this means we have the chain of prime ideals $(0) \subset (p)$, and these are the only such chains, so the Krull dimension of $\mathbb{Z}$ is 1. We will thus want to imagine in our mind that $\Spec \mathbb{Z}$ is ``1-dimensional". We imagine a line of points $(p)$, and a generic point $(0)$ spread out amongst them. 
-	
-	Now consider $\Spec \mathbb{Z}[x]$. We now also get prime ideals $(f)$ where $f$ is an irreducible polynomial, and ideals $(f, p)$ where $f$ is also irreducible mod $p$, i.e. irreducible in $\mathbb{Z}_p[x]$. We can now get chains $(0) \subset (p) \subset (f, p)$ so the Krull dimension is 2, so we want to imagine a plane. There will be a `$(p)$'-axis and an `$(f)$'-axis, with the closed points being of the form $(f, p)$. For example the $(x)$ line will intersect the lines $(2)$, $(3)$, $(5)$ just in one  point. The `line' $(x^2+1)$ will intersect $(2)$ at $(2, x+1)$ twice (as $(x+1)^2 = x^2 + 1$ mod 2) and the line $(5)$ at the two points $(5, x+2)$, $(5, x+3)$. $x^2+1$ remains irreducible over $\mathbb{Z}_3$, so the intersection $(3, x^3+1)$ is a `fat point' in some sense. 
+	$(\Spec A, \mathcal{O})$ is a locally ringed space, and moreover the assignment $A \to (\Spec A , \mathcal{O})$ is a contravariant functor. 
 \end{example}
 
+These brief preliminaries have led up to the definition we wanted in this section. 
 
+\begin{definition}
+	An \emph{affine scheme} is a locally ringed space $(X, \mathcal{O}_X)$ which is isomorphic to $(\Spec A, \mathcal{O})$ for some $A$. A \emph{scheme} is a locally ringed space such that $\forall P \in X$, $\exists U \subseteq X$ open containing $P$ such that $(U, \left . \mathcal{O}_X \right \rvert_{U})$ is an affine scheme. 
+\end{definition}
+
+\begin{example}
+	\hl{Give a non-proj example of something which isn't an affine scheme.} 
+\end{example}
+
+One important example of a scheme that is not affine will be $\Proj$, defined as follows: given a graded ring $S$ (with $S_+ = \bigoplus_{d > 0 } S_d$) the underlying topological space is 
+\[
+\Proj S = \left \lbrace \mathfrak{p} \text{ homogeneous prime ideal} \, | \, S_+ \subsetneq \mathfrak{p} \right \rbrace ,  
+\] 
+with topology and sheaf defined as before, but now with the sheaf given by maps into $\bigcup_{\mathfrak{p} \in U} S_{(\mathfrak{p})}$, where $S_{(\mathfrak{p})}$ is the ring of degree-0 elements of $T^{-1}S$ for $T$ the homogeneous elements not in $\mathfrak{p}$, and we require the sections to be locally a ration of element of the same fixed degree (equivalent to saying the map is into the degree 0 part). 
+
+\hl{Discussion about why this is locally affine required, Gautam has notes?} 
 
 \end{document}
 
