@@ -8,8 +8,8 @@ parskip=half}
 %% Page geometry
 \usepackage{geometry}
 \geometry{a4paper,%
-  inner=1.5cm,%
-  outer=1.5cm,%
+  inner=2cm,%
+  outer=2cm,%
   top=2.7cm,%
   bottom=2.5cm,%
   heightrounded,%
@@ -63,6 +63,14 @@ backref=true
  pdfkeywords={},
  pdfsubject={},
  pdflang={English}}
+
+\numberwithin{equation}{section}
+
+\usepackage{ifdraft}
+\newcommand{\marginnote}[1]{%
+  \ifdraft{\marginpar{\small\color{red}#1}}{}
+}
+\newcommand{\TOPROVE}{\marginnote{TOPROVE}}
 
 \usepackage[notquote]{hanging}
 \begin{document}
