@@ -15,16 +15,19 @@ Presheaves are objects which assign data to a topological space in a manner that
     \end{cases}
   \end{displaymath}
   We typically call morphisms of $\mathcal{C}_X^{\opp}$ \emph{restriction maps} or \emph{restrictions} and write them as $\res_{UV}: V\to U$.
-
-  Given a category $\mathcal{D}$, a \emph{presheaf on $X$} with values in $\mathcal{D}$ is a functor,
+\end{definition}
+\begin{definition}
+  Suppose $\mathcal{D}$ is a category with all small (co)limits, a \emph{presheaf on $X$} with values in $\mathcal{D}$ is a functor,
   \begin{displaymath}
     \mathcal{F}: \mathcal{C}_X^{\opp} \to \mathcal{D}
   \end{displaymath}
-  We call elements of $\mathcal{F}(U)$ \emph{sections}.
+  We call elements of $\mathcal{F}(U)$ \emph{sections} and write $\rho^{\mathcal{F}}_{UV}$ or just $\rho_{UV}$ for $\mathcal{F}(\res_{UV})$.
 
   A \emph{morphism of presheaves} is a natural transformation of functors $\phi: \mathcal{F}\to \mathcal{G}$.
   An \emph{isomorphism of presheaves} is a natural isomorphism of functors.
 \end{definition}
+Often we shall make the open set a section is defined on explicit by writing $s_U\in \mathcal{F}(U)$.
+Abusing notation slightly, we will frequently write $s_U \in \mathcal{F}$ for $(U, s)\in \coprod_{V\in \mathcal{C}_X^{\opp}}\mathcal{F}(V)$.
 
 Among presheaves, we are particularly interested in those which satisfy two properties,
 \begin{definition}
@@ -33,11 +36,11 @@ Among presheaves, we are particularly interested in those which satisfy two prop
   \begin{itemize}
     \item \textbf{(injectivity)}: For every $U\subset X$ open, for every cover $\{U_i\subset U\open \mid i\in I\}$, and for every pair of sections $s, t\in \mathcal{F}(U)$,
           \begin{displaymath}
-            \qty(\forall i\in I, \restr{s}_{U_i} = \restr{t}_{U_i}) \implies s = t
+            \qty(\forall i\in I, \rho_{U_i U}(s) = \rho_{U_i U}(t)) \implies s = t
           \end{displaymath}
     \item \textbf{(gluing)}: For every $U\subset X$ open, for every cover $\{U_i\subset U\open\mid i\in I\}$, if we have sections $\{s_i\in \mathcal{F}(U_i)\}$,
           \begin{displaymath}
-            \qty(\forall i, j \in I, \restr{s_i}_{U_{ij}} = \restr{s_j}_{U_{ij}}) \implies \exists s\in \mathcal{F}(U), \forall i\in I, \restr{s}_{U_i} = s_i
+            \qty(\forall i, j \in I, \rho_{U_{ij} U_i}(s_i) = \rho_{U_{ij} U_j}(s_j)) \implies \exists s\in \mathcal{F}(U), \forall i\in I, \rho_{U_i U}(s) = s_i
           \end{displaymath}
           where $U_{ij} := U_i\cap U_j$.
   \end{itemize}
@@ -49,7 +52,11 @@ Among presheaves, we are particularly interested in those which satisfy two prop
   What restrictions do we need on a category $\mathcal{C}$ for there to be a good notion of a sheaf on $\mathcal{C}$?
 \end{remark}
 
-When $\mathcal{D} = \mathbf{AbGrp}$ (and many other categories), these two properties can be summarised in one exact sequence.
+\textbf{Answer}: As long as we can ``cover'' an object in a category by other objects, we can speak sensibly of sheaves on that category.
+Such a category is called a \emph{site}~\cite[\href{https://stacks.math.columbia.edu/tag/00VG}{Tag 00VG}]{stacksprojectauthorsStacksProject2023}.
+Such categories are necessarily small.
+
+When $\mathcal{D} = \mathbf{AbGrp}$ (and indeed many other categories), these two properties can be summarised in one exact sequence.
 \begin{proposition}
   Let $\mathcal{F}: \mathcal{C}_X^{\opp} \to \mathbf{AbGrp}$ be a presheaf. TFAE:\@
   \begin{itemize}
@@ -58,7 +65,8 @@ When $\mathcal{D} = \mathbf{AbGrp}$ (and many other categories), these two prope
           \begin{displaymath}
             0 \to \mathcal{F}(U) \xrightarrow{\alpha} \prod_{i\in I}\mathcal{F}(U_i) \xrightarrow{\beta} \prod_{i, j\in I}\mathcal{F}(U_{ij})
           \end{displaymath}
-          where $\alpha: s\mapsto {\qty(\restr{s}_{U_i})}_{i\in I}$ and $\beta: {(s_i)}_{i\in I} \mapsto {\qty(\restr{s_i}_{U_{ij}} - \restr{s_j}_{U_{ij}})}_{i, j\in I}$, is exact.
+          is exact.
+          Here $\alpha: s\mapsto {\qty(\rho_{U_i U}(s))}_{i\in I}$ and $\beta: {(s_i)}_{i\in I} \mapsto {\qty(\rho_{U_{ij} U_i}(s) - \rho_{U_{ij} U_j}(s))}_{i, j\in I}$.
   \end{itemize}
 \end{proposition}
 
@@ -74,13 +82,15 @@ The restriction maps are the same as $C^0(-, E)$, but with objects,
   \Gamma(U, E) := \{f\in C^0(U, E)\mid \pi\circ f = \id_U\}
 \end{displaymath}
 
-If we fix an object $D\in \mathcal{D}$, the \emph{constant sheaf} with value $D$ is the sheaf,
+If we fix an object $D\in \mathcal{D}$, the \emph{constant presheaf} with value $D$ is the presheaf,
 \begin{displaymath}
   \begin{gathered}
     \underline{D}(U) := D\\
     \underline{D}\qty(\res_{UV}) := \id_D
   \end{gathered}
 \end{displaymath}
+This fails to be a sheaf when $D$ has more than one element, but as we shall see it does uniquely determine a sheaf.
+
 If we further assume that $0\in\mathcal{D}$ is a zero object and fix a point $x\in X$, the \emph{skyscraper sheaf} supported at $x$ with value $D$ is the sheaf,
 \begin{displaymath}
   \begin{gathered}
@@ -97,17 +107,79 @@ If we further assume that $0\in\mathcal{D}$ is a zero object and fix a point $x\
 \end{gathered}
 \end{displaymath}
 
+\paragraph{Stalks and Sheafification}
+
+\begin{definition}
+  Let $\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ be a presheaf.
+  For $x\in X$, the \emph{stalk of $\mathcal{F}$ at $x$} is the direct limit,
+  \begin{displaymath}
+    \mathcal{F}_x := \varinjlim_{U\ni x}\mathcal{F}(U)
+  \end{displaymath}
+  For any open set $U\subset X$ and any $x\in U$, there is a unique morphism, $\imath_{x U}^{-1}: \mathcal{F}(U) \to \mathcal{F}_x$.
+  Given $t_U\in \mathcal{F}(U)$, we call $\imath_{x U}^{-1}(t_U)$ the \emph{germ of $t_U$ at $x$}, and more generally we call elements $\tau_x \in \mathcal{F}_x$ \emph{germs (of sections) at $x$}.
+\end{definition}
+
+If a presheaf provides some local data on a topological space $X$, the stalk at $x$ is the point-local data at $x$.
+Stalks allow us to define a particularly useful topological space.
+For a presheaf $\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$, let $\tilde{\mathcal{F}}$ be the set,
+\begin{displaymath}
+  \tilde{\mathcal{F}} := \coprod_{x\in X}\mathcal{F}_x
+\end{displaymath}
+And given $t_U\in \mathcal{F}$, we let,
+\begin{displaymath}
+  B(t_U) := \qty{\imath_{x U}^{-1}(t_U) \mid x\in U} \subset \tilde{\mathcal{F}}
+\end{displaymath}
+i.e.\ $B(t_U)$ is the set of germs of $t_U$.
+
+\begin{proposition}
+  The set,
+  \begin{displaymath}
+    \mathcal{B} := \qty{B(t_U) \subset \tilde{\mathcal{F}}\ \middle|\ t_U \in \mathcal{F}}
+  \end{displaymath}
+  is the basis for a topology on $\tilde{\mathcal{F}}$.
+\end{proposition}
+\begin{proof}\TOPROVE%
+  We first show that $\mathcal{B}$ covers $\tilde{\mathcal{F}}$, let $\tau_x \in \tilde{\mathcal{F}}$.
+  Since $\tau_x \in \mathcal{F}_x$, there is some $t_U \in \mathcal{F}$ such that $x\in U$ and $\tau_x  = \imath^{-1}_{x U}(t_U)$, so $\tau_x\in B(t_U)$.
+
+  Now suppose $B(s_U), B(t_V)\in \mathcal{B}$ are such that there exists $\tau_x\in B(s_U)\cap B(t_V)$.
+  We would like to show there exists some $r_W\in \mathcal{F}$ such that $B(r_W)\subset B(s_U)\cap B(t_V)$.
+  Necessarily, $x\in U\cap V$ and $\tau_x = \imath^{-1}_{x U}(s_U) = \imath^{-1}_{x V}(t_V)$.
+  Now suppose $r_W\in \mathcal{F}$ is such that $x\in W$ and $\tau_x = \imath_{x W}(r_W)$, i.e.\ $\tau_x\in B(r_W)$.
+  WLOG we can assume $W\subset U\cap V$ by e.g.\ taking restrictions.
+  We claim that $B(r_W)\subset B(s_U)\cap B(t_V)$.
+
+  For any $y\in W$, we have the diagram,
+  \begin{displaymath}
+    \begin{tikzcd}
+      \mathcal{F}(U)
+      \arrow[drr, bend left, "\imath_{yU}^{-1}"]
+      \arrow[dr, "\rho_{WU}"]
+      &&\\
+      & \mathcal{F}(W)
+      \arrow[r, "\imath_{yW}^{-1}"]
+      & \mathcal{F}_y\\
+      \mathcal{F}(V)
+      \arrow[urr, bend right, "\imath_{yV}^{-1}"]
+      \arrow[ur, "\rho_{WV}"]
+    \end{tikzcd}
+  \end{displaymath}
+\end{proof}
+
+
+\paragraph{More Examples of Sheaves}
+
 We can also construct sheaves from other sheaves.
 \begin{definition}
   Suppose $f: X\to Y$ and $g: Y\to Z$ are continuous maps and let $\mathcal{F}: \mathcal{C}_Y^{\opp} \to \mathcal{D}$ be a presheaf on $Y$.
 
   The \emph{direct image presheaf} of $\mathcal{F}$ by $g$ is the presheaf $\pfwd{g}\mathcal{F}: \mathcal{C}_Z^{\opp}\to \mathcal{D}$ defined by,
   \begin{displaymath}
-    (\pfwd{g}\mathcal{F})(V) = \mathcal{F}(g^{-1}(V))
+    (\pfwd{g}\mathcal{F})(V) := \mathcal{F}(g^{-1}(V))
   \end{displaymath}
-  The \emph{inverse image presheaf} of $\mathcal{F}$ by $f$ is the presheaf $f^{-1}\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ defined by,
+  The \emph{inverse image presheaf} of $\mathcal{F}$ by $f$ is the presheaf $f^{+}\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ defined by,
   \begin{displaymath}
-    (f^{-1}\mathcal{F})(U) = \lim_{V\supseteq f(U), V\subseteq Y\open}\mathcal{F}(V)
+    (f^{+}\mathcal{F})(U) := \varinjlim_{V\supseteq f(U)}\mathcal{F}(V)
   \end{displaymath}
 \end{definition}
 
@@ -122,20 +194,13 @@ There is also the following result which is rather cute.
   \begin{displaymath}
     \underline{D}_x \cong \pfwd{\imath_x}\underline{D}
   \end{displaymath}
-  where $\underline{D}_x$ is the skyscraper sheaf supported at $x$ with value $D$ on $X$, and $\underline{D}$ is the constant sheaf with value $D$ on $\{x\}$.
+  where $\underline{D}_x$ is the skyscraper sheaf supported at $x$ with value $D$ on $X$, and $\underline{D}$ is the constant presheaf with value $D$ on $\{x\}$.
 \end{lemma}
 
 
 \paragraph{$B$-sheaves}
 
 Another useful characterisation of sheaves are in terms of $B$-sheaves (see Eisenbud and Harris for definition and proposition relating $B$ sheaves and sheaves).
-
-\paragraph{Stalks and Sheafification}
-
-\begin{definition}
-  Let $\mathcal{F}: \mathcal{C}_X^{\opp}\to \mathcal{D}$ be a sheaf.
-  For $x\in X$, the stalk
-\end{definition}
 
 \paragraph{Vector Bundles}%
 
