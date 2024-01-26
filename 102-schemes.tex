@@ -94,10 +94,18 @@ Moreover, given a homomorphism of rings, $\phi : A \to B$, and $\mathfrak{q}\sub
 \begin{definition}
   Let $\mathcal{O}$ be a sheaf on $\Spec A$ given by,
   \[
-    \mathcal{O}(U) = \lbrace s : U \to \sqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}} \, | \, s(\mathfrak{p}) \in A_{\mathfrak{p}} \text{ and } \exists V \subseteq U, V \ni \mathfrak{p}, a, f \in A \text{ s.t. } \forall \mathfrak{q} \in V, \, f \notin \mathfrak{q} \text{ and } s(\mathfrak{q}) = \frac{a}{f} \rbrace.
+    \mathcal{O}(U) = \qty{
+      s \in \Gamma\qty(U, \bigsqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}})
+      \middle\vert
+      \forall \mathfrak{p}\in U,
+      \exists f \in A,
+      \exists V\in \mathcal{N}(\mathfrak{p}, U\cap D(f)),
+      \forall \mathfrak{q} \in V, s(\mathfrak{q}) \in A_f
+    }
   \]
+  where $\mathcal{N}(p, U)$ is the set of open neighbourhoods of $p$ contained in $U$.
 \end{definition}
-The second part of the condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials). 
+The condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials).
 
 \begin{lemma}
   The stalk $\mathcal{O}_{\mathfrak{p}}$ is isomorphic to $A_{\mathfrak{p}}$, not just as a ring but as a local ring.
