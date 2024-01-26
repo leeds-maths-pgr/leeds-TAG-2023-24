@@ -1,4 +1,4 @@
-\documentclass[a4paper, draft]{scrartcl}
+\documentclass[a4paper, draft, 12pt]{scrartcl}
 \KOMAoptions{%
 toc=bibliographynumbered,%
 parskip=half}
@@ -13,7 +13,7 @@ parskip=half}
   top=2.7cm,%
   bottom=2.5cm,%
   heightrounded,%
-  marginparwidth=0cm,%
+  marginparwidth=1.5cm,%
   marginparsep=0cm,%
 }
 
@@ -68,7 +68,7 @@ backref=true
 
 \usepackage{ifdraft}
 \newcommand{\marginnote}[1]{%
-  \ifdraft{\marginpar{\small\color{red}#1}}{}
+  \ifdraft{\marginpar{\fontsize{6pt}{8pt}\selectfont\color{red}#1}}{}
 }
 \newcommand{\TOPROVE}{\marginnote{TOPROVE}}
 
