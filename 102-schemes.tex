@@ -59,18 +59,39 @@ If $S = \left\{ f \right\}$, we will often just write $V(f)$.
 \end{remark}
 
 We now want to define a sheaf over $\Spec A$.
-Recall the definition of the \emph{localisation} of $A$ at $\mathfrak{p} \subset A$ a prime ideal:
-\[
-  A_{\mathfrak{p}} := (A\setminus \mathfrak{p})^{-1} A = \lbrace \frac{a}{f} \, | \, a \in A, f \in A\setminus \mathfrak{p} \rbrace / \sim,
-\]
-where the equivalence relation $\sim$ is given by 
-\[
-  \frac{a}{f} \sim \frac{a^\prime}{f^\prime} \Leftrightarrow \exists f^{\prime \prime} \in A\setminus \mathfrak{p} , \quad f^{\prime \prime}(a f^\prime - a^\prime f) = 0.
-\]
-The localisation is an example of a \emph{local ring}, that is a ring with a unique maximal idea, which in the case of the localisation corresponds to $\mathfrak{p}$. Given any ring hom $\phi : A \to B$, we get a local ring hom $\phi_{\mathfrak{p}} : A_{\phi^{-1}(\mathfrak{p})} \to B_{\mathfrak{p}}$. 
+However, it is useful to recall some ideas about localisation before proceeding.
+All of these facts can be found in~\cite[][81-86]{altmanTermCommutativeAlgebra2013} or~\cite[][36-49]{atiyahIntroductionCommutativeAlgebra2000}.
 
+\paragraph{Localisation}
 
-The sheaf $\mathcal{O}$ which we will define on $\Spec A$ will now be given by 
+Recall that $S\subset A$ is \emph{multiplicative} if $a, b\in S \implies ab\in S$.
+The \emph{localisation of $A$ away from $S$} is the ring consisting of pairs,
+\begin{displaymath}
+  S^{-1}A := \left\{ a/s \mid s\in S, a\in A \right\}/\sim
+\end{displaymath}
+where,
+\begin{displaymath}
+  a/s \sim b/t \iff
+  \exists u\in S^{-1}, u(at - bs) = 0
+\end{displaymath}
+
+There are two particularly important examples of localisations:
+\begin{itemize}
+  \item localising away from $\left\{a, a^2, \ldots \right\}$ for $a\in A$, and
+  \item localising away from $A\setminus\mathfrak{p}$ for some prime ideal $\mathfrak{p}\subset A$.
+\end{itemize}
+we call the first \emph{localising away from $a$} and the second \emph{localising at $\mathfrak{p}$}.
+
+Confusingly, these rings are commonly written $A_a$ and $A_{\mathfrak{p}}$ respectively.
+Even more frustratingly, the usage of localisation \emph{at} vs.\ localisation \emph{away from} is also subject to convention.
+GC suggests using \emph{at} only when we are localising with respect to the complement of a prime ideal, and \emph{away from} for anything else.
+
+In the particular case of localising at primes, $A_\mathfrak{p}$ is an example of a \emph{local ring}, i.e.\ one with a unique maximal ideal, $\mathfrak{p}$.
+Moreover, given a homomorphism of rings, $\phi : A \to B$, and $\mathfrak{q}\subset B$ prime, we have a homomorphism of local rings $\phi_{\mathfrak{q}} : A_{\phi^{-1}(\mathfrak{q})} \to B_{\mathfrak{q}}$.
+
+\paragraph{The Structure Sheaf}
+
+The sheaf $\mathcal{O}$ which we will define on $\Spec A$ will now be given by
 \[
   \mathcal{O}(U) = \lbrace s : U \to \sqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}} \, | \, s(\mathfrak{p}) \in A_{\mathfrak{p}} \text{ and } \exists V \subseteq U, V \ni \mathfrak{p}, a, f \in A \text{ s.t. } \forall \mathfrak{q} \in V, \, f \notin \mathfrak{q} \text{ and } s(\mathfrak{q}) = \frac{a}{f} \rbrace.
 \]
