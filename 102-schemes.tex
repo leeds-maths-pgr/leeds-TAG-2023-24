@@ -91,10 +91,12 @@ Moreover, given a homomorphism of rings, $\phi : A \to B$, and $\mathfrak{q}\sub
 
 \paragraph{The Structure Sheaf}
 
-The sheaf $\mathcal{O}$ which we will define on $\Spec A$ will now be given by
-\[
-  \mathcal{O}(U) = \lbrace s : U \to \sqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}} \, | \, s(\mathfrak{p}) \in A_{\mathfrak{p}} \text{ and } \exists V \subseteq U, V \ni \mathfrak{p}, a, f \in A \text{ s.t. } \forall \mathfrak{q} \in V, \, f \notin \mathfrak{q} \text{ and } s(\mathfrak{q}) = \frac{a}{f} \rbrace.
-\]
+\begin{definition}
+  Let $\mathcal{O}$ be a sheaf on $\Spec A$ given by,
+  \[
+    \mathcal{O}(U) = \lbrace s : U \to \sqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}} \, | \, s(\mathfrak{p}) \in A_{\mathfrak{p}} \text{ and } \exists V \subseteq U, V \ni \mathfrak{p}, a, f \in A \text{ s.t. } \forall \mathfrak{q} \in V, \, f \notin \mathfrak{q} \text{ and } s(\mathfrak{q}) = \frac{a}{f} \rbrace.
+  \]
+\end{definition}
 The second part of the condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials). 
 
 \begin{lemma}
