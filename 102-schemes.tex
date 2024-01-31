@@ -132,8 +132,17 @@ The \emph{localisation of $A$ away from $S$} is the ring consisting of pairs,
 where,
 \begin{displaymath}
   a/s \sim b/t \iff
-  \exists u\in S^{-1}, u(at - bs) = 0
+  \exists u\in S, u(at - bs) = 0
 \end{displaymath}
+
+It is also convenient to define the \emph{annihilator}, $\Ann(a) = \left\{ x\in A \mid xa = 0 \right\}$ (writing $\Ann(S) = \bigcap_{s\in S}\Ann(s)$ for $S\subset A$).
+Note that the annihilator is clearly an ideal of $A$.
+With this, equivalence relation becomes,
+\begin{displaymath}
+  a/s \sim b/t \iff
+  S\cap\Ann(at - bs) \neq \varnothing
+\end{displaymath}
+An immediate consequence of this definition is that $S\subset {(S^{-1}A)}^{\times}$.
 
 There are two particularly important examples of localisations:
 \begin{itemize}
@@ -148,6 +157,37 @@ GC suggests using \emph{at} only when we are localising with respect to the comp
 
 In the particular case of localising at primes, $A_\mathfrak{p}$ is an example of a \emph{local ring}, i.e.\ one with a unique maximal ideal, $\mathfrak{p}$.
 Moreover, given a homomorphism of rings, $\phi : A \to B$, and $\mathfrak{q}\subset B$ prime, we have a homomorphism of local rings $\phi_{\mathfrak{q}} : A_{\phi^{-1}(\mathfrak{q})} \to B_{\mathfrak{q}}$.
+
+For any multiplicative set $S$, there is always a homomorphism $\imath_S: A \to S^{-1}A, a\mapsto a/1$, hence $S^{-1}A$ is always an $A$-algebra.
+Indeed, we have the following useful characterisation of localisations,
+\begin{lemma}[UMP of Localisations]
+  Let $A$ be a ring, $S\subset A$ a multiplicative subset, then every $A$-algebra which maps $S$ to units factors through $(S^{-1}A, \imath_S)$.
+  i.e.\ for every $A$-algebra $(B, f)$ satisfying $f(S)\subset B^{\times}$ there exists a unique $\phi$ such that the following diagram commutes,
+  \begin{displaymath}
+    \begin{tikzcd}
+      S \rar[hook] \dar{f} & A \dar{f} \rar{\imath_S} & S^{-1}A \dlar[dashed]{\phi}\\
+      B^{\times} \rar[hook] & B
+    \end{tikzcd}
+  \end{displaymath}
+
+\end{lemma}
+Note that:
+\begin{itemize}
+  \item $\imath_S$ is injective if and only if $S\cap \Ann(A) \neq \varnothing$.
+  \item TFAE:
+        \begin{itemize}
+          \item $\imath_S$ is surjective,
+          \item $\imath_S$ is bijective,
+          \item $S \subset A^{\times}$
+        \end{itemize}
+\end{itemize}
+
+Naturally:
+\begin{itemize}
+  \item If we have multiplicative sets $T \subset S$, there is a homomorphism $T^{-1}A \to S^{-1}A$.
+  \item The above implies that if we have prime ideals $\mathfrak{p}\subset\mathfrak{q}$, we have $A_\mathfrak{q} \to A_\mathfrak{p}$.
+  \item Moreover, if $\mathfrak{p}\in D(f) \implies \left\{ 1, f, f^2, \ldots \right\}\subset A\setminus\mathfrak{p}$, we have $A_f \to A_\mathfrak{p}$.
+\end{itemize}
 
 \paragraph{The Structure Sheaf}
 
