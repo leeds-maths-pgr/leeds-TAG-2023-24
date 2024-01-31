@@ -192,24 +192,79 @@ Naturally:
 \paragraph{The Structure Sheaf}
 
 \begin{definition}
-  Let $\mathcal{O}$ be a sheaf on $\Spec A$ given by,
+  Let $\mathcal{O}_X$ be a sheaf on $X := \Spec A$ given by,
   \[
-    \mathcal{O}(U) = \qty{
+    \mathcal{O}_X(U) = \qty{
       s \in \Gamma\qty(U, \bigsqcup_{\mathfrak{p} \in U} A_{\mathfrak{p}})
       \middle\vert
-      \forall \mathfrak{p}\in U,
-      \exists f \in A,
-      \exists V\in \mathcal{N}(\mathfrak{p}, U\cap D(f)),
-      \forall \mathfrak{q} \in V, s(\mathfrak{q}) \in A_f
+      s\text{ satisfies~\eqref{eq:str-sheaf-cond-harts}}
     }
   \]
-  where $\mathcal{N}(p, U)$ is the set of open neighbourhoods of $p$ contained in $U$.
-\end{definition}
-The condition just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials).
+  where~\eqref{eq:str-sheaf-cond-harts} is the condition,
+  \begin{equation}\label{eq:str-sheaf-cond-harts}
+      \forall \mathfrak{p}\in U,
+      \exists f_{\ast} \not\in \mathfrak{p},
+      \exists V_{\ast}\in \mathcal{N}(\mathfrak{p}, U\cap D(f_{\ast})),
+      \exists \alpha_{\ast} \in A_{f_\ast},
+      \forall \mathfrak{q} \in V, s(\mathfrak{q}) = (\mathfrak{q}, \alpha_{\ast})
+      \tag{\ast}
+  \end{equation}
+  $\mathcal{N}(p, U)$ being the set of open neighbourhoods of $p$ contained in $U$.
 
+  We see that $\mathcal{O}_X$ is a sheaf of rings by defining $s + t$ and $st$ pointwise on fibres.
+\end{definition}
+
+The condition~\eqref{eq:str-sheaf-cond-harts} just says that the function $s$ looks locally like a quotient, mimicking the definition of a regular function on a variety (which is locally a quotient of polynomials).
+This is made precise in the following manner,
+\begin{proposition}
+  For every $f\in A$, we have $\mathcal{O}_X(D(f)) \cong A_f$.
+\end{proposition}
+The proof below follows \citeauthor{hartshorneAlgebraicGeometry1977}~\cite[][71-72]{hartshorneAlgebraicGeometry1977} with some minor changes.
+\begin{proof}\TOPROVE
+  Fix $f\in A$ and recall that for every $\mathfrak{p}\in D(f)$ we have a natural map $\imath_{\mathfrak{p}}: A_f \to A_\mathfrak{p}$.
+  Thus we define,
+  \begin{displaymath}
+    \begin{gathered}
+      \psi: A_f \to \Gamma\qty(D(f), \coprod_{\mathfrak{p}\in D(f)}A_\mathfrak{p})\\
+      \alpha \mapsto (\mathfrak{p}\mapsto (\mathfrak{p}, \imath_{\mathfrak{p}}(\alpha)))
+    \end{gathered}
+  \end{displaymath}
+  Note that for any $\alpha\in A_f$ and any $\mathfrak{p}\in D(f)$, we can just take $(f_\ast, V_\ast, \alpha_\ast) := (f, D(f), \alpha)$ and we satisfy~\eqref{eq:str-sheaf-cond-harts}.
+  Thus $\psi$ is a well defined map $\psi: A_f \to \mathcal{O}_X(D(f))$, the fact that it is a homomorphism of rings follows immediately from $\imath_{\mathfrak{p}}$ being a homomorphism of rings.
+
+  We first show that $\psi$ is injective.
+  Suppose $\psi(a/f^n) = \psi(b/f^m)$, then for any $\mathfrak{p}\in D(f)$, we must have $\imath_\mathfrak{p}(a/f^n) = \imath_\mathfrak{p}(b/f^m)$, i.e.\ letting $\mathfrak{a := }\Ann(af^m - bf^n)$, $(A\setminus \mathfrak{p})\cap \mathfrak{a} = \mathfrak{a}\setminus\mathfrak{p}\neq\varnothing$.
+  Thus,
+  \begin{align*}
+    \forall\mathfrak{p}\in D(f), \mathfrak{a} \not\subset \mathfrak{p}
+    &\implies \forall \mathfrak{p}\in D(f), \mathfrak{p}\not\in V(\mathfrak{a})\\
+    &\implies D(f)\cap V(\mathfrak{a}) = \varnothing\\
+    &\implies V(f) \supset V(\mathfrak{a})\\
+    &\implies f \in \sqrt{\mathfrak{a}}\\
+    &\implies \exists l\in\Zpl, f^l\in \mathfrak{a}\\
+    &\implies \exists l\in\Zpl, f^l(af^m - bf^n) = 0\\
+    &\implies a/f^n = b/f^m
+  \end{align*}
+  and we are done.
+
+  To show surjectivity, suppose $s\in \mathcal{O}_X(D(f))$.
+  By~\eqref{eq:str-sheaf-cond-harts}, for every $\mathfrak{p}\in D(f)$, there exists:
+  \begin{itemize}
+    \item $f_\mathfrak{p}\not\in \mathfrak{p}$,
+    \item $V_\mathfrak{p}\in \mathcal{N}(p, D(f)\cap D(f_\mathfrak{p}))$
+  \end{itemize}
+  such that $\exists \alpha_\mathfrak{p}\in A_{f_\mathfrak{p}}, \forall \mathfrak{q}\in V_\mathfrak{p}, s(\mathfrak{q}) = \alpha_\mathfrak{p}$.
+
+  Assuming WLOG $V_\mathfrak{p} = D(h_\mathfrak{p})$, we see that $D(h_\mathfrak{p}) \subset D(f)\cap D(f_\mathfrak{p}) \implies h_\mathfrak{p}\in \sqrt{(f_\mathfrak{p})}$
+\end{proof}
+
+Moreover, the structure sheaf has the following important property,
 \begin{lemma}
   The stalk $\mathcal{O}_{\mathfrak{p}}$ is isomorphic to $A_{\mathfrak{p}}$, not just as a ring but as a local ring.
 \end{lemma}
+\begin{proof}\TOPROVE
+  Let $\mathfrak{p}\in\Spec A$, we then have $\mathcal{O}_{X,\mathfrak{p}} := \varinjlim_{U\ni\mathfrak{p}}\mathcal{O}_X(U) = \varinjlim_{D(f)\ni\mathfrak{p}}\mathcal{O}_X(D(f))$ which is isomorphic to $\varinjlim_{f\in A\setminus\mathfrak{p}}A_f$.
+\end{proof}
 
 We shall call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$. 
 
