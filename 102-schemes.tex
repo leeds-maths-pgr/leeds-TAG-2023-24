@@ -266,7 +266,7 @@ Moreover, the structure sheaf has the following important property,
   Let $\mathfrak{p}\in\Spec A$, we then have $\mathcal{O}_{X,\mathfrak{p}} := \varinjlim_{U\ni\mathfrak{p}}\mathcal{O}_X(U) = \varinjlim_{D(f)\ni\mathfrak{p}}\mathcal{O}_X(D(f))$ which is isomorphic to $\varinjlim_{f\in A\setminus\mathfrak{p}}A_f$.
 \end{proof}
 
-We shall call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$. 
+We call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$.
 
 \begin{definition}
   We shall call a pair $(X, \mathcal{O}_X)$, where $X$ is a topological space and $\mathcal{O}_X$ is a sheaf of rings over it, a \emph{ringed space}.
@@ -275,15 +275,15 @@ We shall call the pair $(\Spec A, \mathcal{O})$ the \emph{spectrum} of $A$.
   We shall say that $(X, \mathcal{O}_X)$ is moreover a \emph{locally ringed space} if the stalk $\mathcal{O}_{X, P}$ at $P \in X$ is a local ring and $f^\sharp_P : \mathcal{O}_{Y, f(P)} \to \mathcal{O}_{X, P}$ is a local ring hom.
 \end{definition}
 
-\begin{example}
-  $(\Spec A, \mathcal{O})$ is a locally ringed space, and moreover the assignment $A \mapsto (\Spec A , \mathcal{O})$ is a contravariant functor.
-\end{example}
+\begin{lemma}
+  $(\Spec A, \mathcal{O})$ is a locally ringed space, and the assignment $A \mapsto (\Spec A , \mathcal{O})$ is a contravariant functor.
+\end{lemma}
 
 These brief preliminaries have led up to the definition we wanted in this section. 
 
 \begin{definition}
   An \emph{affine scheme} is a locally ringed space $(X, \mathcal{O}_X)$ which is isomorphic to $(\Spec A, \mathcal{O})$ for some $A$.
-  A \emph{scheme} is a locally ringed space such that $\forall P \in X$, $\exists U \subseteq X$ open containing $P$ such that $(U, \left . \mathcal{O}_X \right \rvert_{U})$ is an affine scheme.
+  A \emph{scheme} is a locally ringed space such that $\forall p \in X$, $\exists U \in \mathcal{N}(p, X)$ such that $(U, \left . \mathcal{O}_X \right \rvert_{U})$ is an affine scheme.
 \end{definition}
 
 \begin{example}
