@@ -17,6 +17,30 @@
 	Now consider $\Spec \mathbb{Z}[x]$. We now also get prime ideals $(f)$ where $f$ is an irreducible polynomial, and ideals $(f, p)$ where $f$ is also irreducible mod $p$, i.e. irreducible in $\mathbb{Z}_p[x]$. We can now get chains $(0) \subset (p) \subset (f, p)$ so the Krull dimension is 2, so we want to imagine a plane. There will be a `$(p)$'-axis and an `$(f)$'-axis, with the closed points being of the form $(f, p)$. For example the $(x)$ line will intersect the lines $(2)$, $(3)$, $(5)$ just in one  point. The `line' $(x^2+1)$ will intersect $(2)$ at $(2, x+1)$ twice (as $(x+1)^2 = x^2 + 1$ mod 2) and the line $(5)$ at the two points $(5, x+2)$, $(5, x+3)$. $x^2+1$ remains irreducible over $\mathbb{Z}_3$, so the intersection $(3, x^3+1)$ is a `fat point' in some sense.
 \end{example}
 
+\begin{example}
+	Let's consider now two schemes related to varieties, both living in $\Spec \mathbb{C}[x, y]$. Note the prime ideals in here are of the form $(0)$, $(f)$ for $f(x,y)$ irreducible, or $(x-a, y-b)$ for $a,b \in \mathbb{C}$. We can check 
+	\begin{align*}
+	V((xy)) &= \qty{(x), (y), (x, y-b), (x-a, y)} , \\
+	V((x^2)) &= \qty{(x), (x, y-b)} . 
+	\end{align*}
+	
+	First consider $A := \mathbb{C}[x, y]/(xy)$ and $\Spec A$. We want to know what the prime ideals in this ring are, and they are all images under the projection $\mathbb{C}[x,y] \to A$ of ideals in $V((xy))$. As such, we can partition 
+	\[
+	\Spec A = \qty{(x), (x, y-b)} \cup \qty{(y), (x-a, y)}, 
+	\]
+	both of which are closed as they correspond to $V((x))$ and $V((y))$ respectively. As such, $\Spec A$ is reducible, corresponding to the associated variety being reducible. 
+	
+	Now consider $A := \mathbb{C}[x,y]/(x^2)$. We can check that the localisation of this ring at $\mathfrak{p} = (x)$ is 
+	\[
+	A_{(x)} = \mathbb{C}[x,y]_{(x)}/(x^2) = \qty{\frac{a}{b} \, | \, a,b \in \mathbb{C}[x,y], x \not\mid b} / \sim,
+	\]
+	where the equivalence relation $\sim$ is given by 
+	\[
+	\frac{a}{b} \sim \frac{a^\prime}{b^\prime} \Leftrightarrow \exists b^{\prime \prime}, \, (ab^\prime - a^\prime b)b^{\prime \prime} \in (x^2). 
+	\]
+	We  can thus check that $\frac{x}{1} \in A_{(x)}$ and that $(x/1)^2 \sim (0/1)$. As such the stalk of $\Spec A$ as $\mathfrak{p} = (x)$ has nilpotents, and so $\Spec A$ is not reduced. 
+\end{example}
+
 \end{document}
 
 % Local Variables:
