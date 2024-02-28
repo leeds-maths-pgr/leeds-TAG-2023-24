@@ -15,13 +15,12 @@
     }
   \]
   where~\eqref{eq:str-sheaf-cond-harts} is the condition,
-  \begin{equation}\label{eq:str-sheaf-cond-harts}
+  \begin{equation} \label{eq:str-sheaf-cond-harts}
       \forall \mathfrak{p}\in U,
       \exists f_{\ast} \not\in \mathfrak{p},
       \exists V_{\ast}\in \mathcal{N}(\mathfrak{p}, U\cap D(f_{\ast})),
       \exists \alpha_{\ast} \in A_{f_\ast},
       \forall \mathfrak{q} \in V, s(\mathfrak{q}) = (\mathfrak{q}, \alpha_{\ast})
-      \tag{\ast}
   \end{equation}
   $\mathcal{N}(p, U)$ being the set of open neighbourhoods of $p$ contained in $U$.
 
@@ -100,8 +99,10 @@ These brief preliminaries have led up to the definition we wanted in this sectio
   A \emph{scheme} is a locally ringed space such that $\forall p \in X$, $\exists U \in \mathcal{N}(p, X)$ such that $(U, \left . \mathcal{O}_X \right \rvert_{U})$ is an affine scheme.
 \end{definition}
 
-\begin{example}
-  \marginnote{LDH: Give a non-proj example of something which isn't an affine scheme.}
+\begin{example}\label{ex: gluing schemes}
+  One way to construct schemes which will allow us to get non-affine examples is by gluing. Recall that one of the constructions we had for sheaves was that, given sheaves $\mathcal{F}_i$ on $U_i \subset X$ open such that $\qty{U_i}$ is a cover of $X$, and moreover given isomorphisms $\phi_{ij} : \mathcal{F}_{i} |_{U_i \cap U_j} \to \mathcal{F}_j |_{U_i \cap U_j}$ such that the $\phi_{ij}$ satisfy cocycle conditions, then there exists a unique sheaf $\mathcal{F}$ on $X$ with isomorphisms $\psi_i : \mathcal{F} |_{U_i} \to \mathcal{F}_i$ related by the $\phi_{ij}$. 
+  
+  We will have a similar construction for schemes. Namely, given $X_i$ schemes and $U_{ij} \subset X_i$ with isomorphisms $\phi_{ij} : U_{ij} \to U_{ji}$ satisfying cocycle conditions, there exists a unique sheaf $X$ with morphisms $\psi_i : X_i \to X$ such that $\qty{\psi_i(X_i)}$ is an open cover of $X$ and the $\psi_i$ are related by the $\phi_{ij}$. (This is Hartshorne Exercise II.2.12).  
 \end{example}
 
 One important example of a scheme that is not affine will be $\Proj$, defined as follows: given a graded ring $S$ (with $S_+ = \bigoplus_{d > 0 } S_d$) the underlying topological space is
